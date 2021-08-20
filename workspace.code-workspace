@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "..\\personal web site"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "web design challenge"
+	}
+}
