@@ -115,6 +115,10 @@ $("#messageValidation").keyup(function () {
     messageValidated = false;
   }
 });
+$('.navbar-collapse a').click(function () {
+  $('.navbar-collapse').collapse('hide');
+});
+
 
 
 
