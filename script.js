@@ -6,13 +6,11 @@ var messageValidated = false;
 
 $("#nameValidation").keyup(function () {
   if (
-    $("#nameValidation")
-      .val()
-      .match(/^[A-Za-z][A-Za-z\ ]/)
+    $("#nameValidation").val().match(/^[A-Za-z][A-Za-z\ ]/)
   ) {
     $("#name-Text").show();
     $("#name-Text").text("perfect");
-    $("#name-Text").css("class", "valid-feedback");
+    $("#name-Text").css("class", "invalid-feedback");
     nameValidated = true;
   } else {
     $("#name-Text").show();
@@ -75,9 +73,7 @@ $("#numberValidation").blur(function () {
 
 $("#mailValidation").keyup(function () {
   if (
-    $("#mailValidation")
-      .val()
-      .match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+    $("#mailValidation").val().match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
   ) {
     $("#mail-type").text("perfect");
     $("#mail-type").show();
