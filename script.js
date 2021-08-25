@@ -5,12 +5,9 @@ var messageValidated = false;
 
 
 $("#nameValidation").keyup(function () {
-  if (
-    $("#nameValidation").val().match(/^[A-Za-z][A-Za-z\ ]/)
-  ) {
+  if ($("#nameValidation").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
     $("#name-Text").show();
-    $("#name-Text").text("perfect");
-    $("#name-Text").css("class", "invalid-feedback");
+    $("#name-Text").text(" ");
     nameValidated = true;
   } else {
     $("#name-Text").show();
@@ -18,16 +15,12 @@ $("#nameValidation").keyup(function () {
     $("#name-Text").css("class", "invalid-feedback");
     nameValidated = false;
   }
-  $("#nameValidation").keypress(function (e) {
-    if (
-      (e.charCode >= 33 && e.charCode <= 64) ||
-      (e.charCode >= 91 && e.charCode <= 96) ||
-      (e.charCode >= 123 && e.charCode <= 126)
-    ) {
-      e.preventDefault();
+  $("#nameValidation").keypress(function (num) {
+    if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)  ) {
+      num.preventDefault();
     }
   });
-  if ($("#nameValidation").val().length < 4) {
+  if ($("#nameValidation").val().length < 3) {
     $("#name-Text").show();
     $("#name-Text").text("Name should have type morethan 3 characters");
     $("#name-Text").css("class", "invalid-feedback");
@@ -44,14 +37,13 @@ $("#nameValidation").blur(function () {
 });
 
 
-$("#numberValidation").keypress(function (e) {
-  return e.charCode >= 48 && e.charCode <= 57;
+$("#numberValidation").keypress(function (num) {
+  return num.charCode >= 48 && num.charCode <= 57;
 });
-$("#numberValidation").keyup(function (e) {
+$("#numberValidation").keyup(function () {
   if ($("#numberValidation").val().match(/^\d+$/)) {
     $("#text-Number").show();
-    $("#text-Number").text("perfect");
-    $("#text-Number").css("class", "valid-feedback");
+    $("#text-Number").text(" ");
     phoneValidated = true;
   }
   if ($("#numberValidation").val().length < 10) {
@@ -72,12 +64,9 @@ $("#numberValidation").blur(function () {
 });
 
 $("#mailValidation").keyup(function () {
-  if (
-    $("#mailValidation").val().match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
-  ) {
-    $("#mail-type").text("perfect");
+  if ($("#mailValidation").val().match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    $("#mail-type").text(" ");
     $("#mail-type").show();
-    $("#mail-type").css("class", "valid-feedback");
     emailValidated = true;
   } else {
     $("#mail-type").show();
@@ -104,8 +93,7 @@ $("#messageValidation").keyup(function () {
     messageValidated = false;
   } else {
     $("#msg-text").show();
-    $("#msg-text").text("perfect");
-    $("#msg-text").css("class", "valid-feedback");
+    $("#msg-text").text(" ");
     messageValidated = true;
   }
   if ($("#messageValidation").val() == "") {
@@ -113,6 +101,7 @@ $("#messageValidation").keyup(function () {
     $("#msg-text").text("You must leave a message ");
     $("#msg-text").css("class", "invalid-feedback");
     messageValidated = false;
+
   }
 });
 $('.navbar-collapse a').click(function () {
@@ -122,14 +111,12 @@ $('.navbar-collapse a').click(function () {
 
 
 
-$("#submit-form").submit(function (e) {
-  if (
-    $("#nameValidation").val() == "" &&
-    $("#numberValidation").val() == "" &&
-    $("#mailValidation").val() == "" &&
-    $("#messageValidation").val() == ""
-  ) {
-    e.preventDefault();
+$("#submit-form").submit(function (num) {
+  if ($("#nameValidation").val() == "" ||  $("#numberValidation").val() == "" || $("#mailValidation").val() == "" || $("#messageValidation").val() == "" ) {
+    alert("please fill the form properly");
+  }
+  if ($("#nameValidation").val() == "" &&  $("#numberValidation").val() == "" && $("#mailValidation").val() == "" && $("#messageValidation").val() == "" ) {
+    num.preventDefault();
     $("#name-Text").show();
     $("#text-Number").show();
     $("#mail-type").show();
@@ -140,7 +127,7 @@ $("#submit-form").submit(function (e) {
     emailValidated &&
     messageValidated
   ) {
-    e.preventDefault();
+    num.preventDefault();
     $.ajax({
       url: "https://script.google.com/macros/s/AKfycbzTkL5i1GncmbTaxtSH7neJUABFhp0WyIxLesoi5EmXWQspp9p1/exec",
       data: $("#submit-form").serialize(),
@@ -154,6 +141,6 @@ $("#submit-form").submit(function (e) {
       },
     });
   } else {
-    e.preventDefault();
+    num.preventDefault();
   }
 });
